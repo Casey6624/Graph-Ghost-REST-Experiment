@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const productRoutes = require("./controllers/productController");
+
 const app = express();
 
 const PORT = 4000;
@@ -17,6 +19,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.post("/createProduct", productRoutes.createProduct);
 
 mongoose
   .connect(
