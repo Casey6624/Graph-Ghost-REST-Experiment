@@ -28,13 +28,16 @@ exports.createProduct = (req, res, next) => {
 
   return product
     .save()
-    .then(res => {
+    .then(() => {
       console.log("Write to database was successful!");
+      return res.sendStatus(200);
     })
     .catch(err => {
+      throw new Error(
+        "Could not write to the database, please try again later"
+      );
       console.log(err);
     });
 
   console.log(req.body);
-  res.sendStatus(200);
 };
