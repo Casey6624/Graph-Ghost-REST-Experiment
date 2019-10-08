@@ -8,7 +8,12 @@ exports.createProduct = (req, res, next) => {
     productQuantity
   } = req.body;
 
-  if (!productName || !productPrice || !productQuantity) {
+  if (
+    !productName ||
+    !productPrice ||
+    !productQuantity ||
+    !productDescription
+  ) {
     throw new Error(
       "Please make sure the product has a Name, Price and Quantity"
     );
