@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const graphqlHttp = require("express-graphql");
+const graphqlResolvers = require("./resolvers/Resolvers");
+const graphqlSchema = require("./schema/Schema");
 
 const app = express();
 
@@ -17,6 +20,15 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use(
+  "/graphql",
+  graphqlHttp({
+    schema: graphqlSchema,
+    rootValue: graphqlResolvers,
+    graphiql: true
+  })
+);
 
 mongoose
   .connect(
