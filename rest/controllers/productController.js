@@ -63,6 +63,47 @@ exports.findById = async (req, res, next) => {
   res.send(JSON.stringify(result));
 };
 
+exports.updateProduct = async (req, res, next) => {
+  const { headers, body } = req;
+  const { productid: productId } = headers;
+  const {
+    productName,
+    productDescription,
+    productPrice,
+    productQuantity
+  } = body;
+
+  if (!productId) {
+    throw new Error("Please specifiy a productId to edit in the headers");
+  }
+
+  if (
+    !productName ||
+    !productPrice ||
+    !productQuantity ||
+    !productDescription
+  ) {
+    throw new Error(
+      "Please make sure the product has a Name, Price and Quantity"
+    );
+  }
+
+  const result = await Product.findByIdAndUpdate(productId, {
+    productName: productName,
+    productPrice: productPrice,
+    productQuantity: productQuantity,
+    productDescription: productDescription
+  })
+    .then(() => {
+      console.log("Updated successfully");
+      return res.sendStatus(200);
+    })
+    .catch(err => {
+      console.log(err);
+      return res.send(err);
+    });
+};
+
 exports.deleteProduct = async (req, res, next) => {
   const { productid } = req.headers;
   console.log(req.headers);
