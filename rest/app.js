@@ -22,6 +22,8 @@ app.use((req, res, next) => {
 
 app.post("/createProduct", productRoutes.createProduct);
 
+app.get("/findAllProducts", productRoutes.findAllProducts);
+
 mongoose
   .connect(
     "mongodb+srv://dbadmin:Password123@experiment-yw6rd.mongodb.net/test?retryWrites=true&w=majority",

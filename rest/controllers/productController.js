@@ -1,5 +1,6 @@
 const Product = require("../models/Product");
 
+// Create New
 exports.createProduct = (req, res, next) => {
   const {
     productName,
@@ -40,4 +41,14 @@ exports.createProduct = (req, res, next) => {
     });
 
   console.log(req.body);
+};
+// Find All
+exports.findAllProducts = async (req, res, next) => {
+  try {
+    const products = await Product.find();
+    console.log(products);
+    res.send(JSON.stringify(products));
+  } catch (err) {
+    throw err;
+  }
 };
