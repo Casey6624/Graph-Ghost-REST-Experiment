@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const productRoutes = require("./controllers/productController");
+
 const app = express();
 
 const PORT = 4000;
@@ -18,9 +20,19 @@ app.use((req, res, next) => {
   next();
 });
 
+app.post("/createProduct", productRoutes.createProduct);
+
+app.get("/findAllProducts", productRoutes.findAllProducts);
+
+app.get("/findById", productRoutes.findById);
+
+app.put("/updateProduct", productRoutes.updateProduct);
+
+app.delete("/deleteProduct", productRoutes.deleteProduct);
+
 mongoose
   .connect(
-    `mongodb+srv://dbadmin:Password123@experiment-yw6rd.mongodb.net/admin?retryWrites=true&w=majority`,
+    "mongodb+srv://dbadmin:Password123@experiment-yw6rd.mongodb.net/test?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
