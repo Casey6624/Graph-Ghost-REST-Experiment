@@ -52,3 +52,18 @@ exports.findAllProducts = async (req, res, next) => {
     throw err;
   }
 };
+
+exports.deleteProduct = async (req, res, next) => {
+  const { productid } = req.headers;
+  console.log(req.headers);
+  if (!productid) {
+    throw new Error("No Product ID sent with request!");
+  }
+  try {
+    const result = await Product.deleteOne({ _id: productid });
+    console.log(`Product with ID ${productid} has been successfully deleted`);
+    return res.send(result);
+  } catch (err) {
+    throw new Error(err);
+  }
+};
