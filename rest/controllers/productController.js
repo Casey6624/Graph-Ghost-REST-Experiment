@@ -53,6 +53,16 @@ exports.findAllProducts = async (req, res, next) => {
   }
 };
 
+exports.findById = async (req, res, next) => {
+  const { productid: productId } = req.headers;
+
+  if (!productId) {
+    throw new Error("Please add a product ID!");
+  }
+  const result = await Product.findById(productId);
+  res.send(JSON.stringify(result));
+};
+
 exports.deleteProduct = async (req, res, next) => {
   const { productid } = req.headers;
   console.log(req.headers);

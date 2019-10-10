@@ -24,6 +24,8 @@ app.post("/createProduct", productRoutes.createProduct);
 
 app.get("/findAllProducts", productRoutes.findAllProducts);
 
+app.get("/findById", productRoutes.findById);
+
 app.delete("/deleteProduct", productRoutes.deleteProduct);
 
 mongoose
