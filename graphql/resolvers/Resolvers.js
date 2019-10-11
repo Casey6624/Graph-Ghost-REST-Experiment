@@ -31,7 +31,17 @@ module.exports = GraphQLResolvers = {
     .catch(err => {
       throw new Error(err)
     })
-
-
+  },
+  findProductById: async ({ productId }) => {
+    if(!productId){
+      throw new Error("Please enter a product ID!")
+    }
+    return await Product.findById(productId)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      throw new Error(err)
+    })
   }
 };

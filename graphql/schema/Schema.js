@@ -18,6 +18,7 @@ module.exports = ProductSchema = buildSchema(`
 
     type RootQuery {
         products: [Product!]!
+        findProductById(productId: String!): Product
     }
 
     type RootMutation {
