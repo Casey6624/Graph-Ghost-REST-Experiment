@@ -32,7 +32,7 @@ app.use(
 
 mongoose
   .connect(
-    `mongodb+srv://dbadmin:Password123@experiment-yw6rd.mongodb.net/admin?retryWrites=true&w=majority`,
+    `mongodb+srv://dbadmin:Password123@experiment-yw6rd.mongodb.net/test?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
