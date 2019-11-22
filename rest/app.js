@@ -26,7 +26,7 @@ app.get("/findAllProducts", productRoutes.findAllProducts);
 
 app.get("/findById", productRoutes.findById);
 
-app.put("/updateProduct", productRoutes.updateProduct);
+app.post("/updateProduct", productRoutes.updateProduct);
 
 app.delete("/deleteProduct", productRoutes.deleteProduct);
 
